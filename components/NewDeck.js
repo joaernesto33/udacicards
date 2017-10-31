@@ -5,9 +5,7 @@ export default class NewDeck extends React.Component {
   render () {
     return (
       <View>
-        <Text>
-          This is the NewDeck component
-        </Text>
+        <Text>First page New Deck</Text>
       </View>
     )
   }

@@ -12,13 +12,17 @@ class DeckContainer extends React.Component {
   render () {
     console.log(this.props.deckslist)
     console.log(this.props.state)
+    let showDecks = []
+    if (this.props.state !== undefined)
+      showDecks = Object.values(this.props.state)
+
     return (
       <View>
-        <Text>
-          This is the DeckContainer component
-        </Text>
-
-        <DeckItem />
+      {showDecks.map((deck) => (
+        <View>
+          <DeckItem title={deck.title} totalcards={deck.questions.length} navigation={this.props.navigation}/>
+        </View>
+      ))}
       </View>
     )
   }

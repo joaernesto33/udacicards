@@ -8,6 +8,9 @@ export default class Deck extends React.Component {
         <Text>
           This is the Deck component
         </Text>
+        <Text>
+          {this.props.navigation.state.params.deckTitle}
+        </Text>
       </View>
     )
   }

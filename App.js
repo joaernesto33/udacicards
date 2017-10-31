@@ -2,13 +2,14 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import DeckContainer from './components/DeckContainer'
 import QuizContainer from './components/QuizContainer'
-import { TabNavigator } from 'react-navigation'
+import { TabNavigator, StackNavigator } from 'react-navigation'
 import NewDeck from './components/NewDeck'
 import Results from './components/Results'
 import { gray, white } from './utils/colors'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
+import Deck from './components/Deck'
 
 
 const store = createStore(
@@ -56,15 +57,22 @@ const Tabs = TabNavigator({
   }
 })
 
+
+const MainNavigator = StackNavigator ({
+  Home: {
+    screen: Tabs,
+  },
+  Deck: {
+    screen: Deck,
+  }
+})
+
 export default class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <View style={styles.container}>
-          <Text>Welcome ninja!</Text>
 
-          <Tabs />
-        </View>
+        <MainNavigator />
       </Provider>
     );
   }
