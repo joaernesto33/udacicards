@@ -6,6 +6,15 @@ import { TabNavigator } from 'react-navigation'
 import NewDeck from './components/NewDeck'
 import Results from './components/Results'
 import { gray, white } from './utils/colors'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './reducers'
+
+
+const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
 
 
 const Tabs = TabNavigator({
@@ -50,11 +59,13 @@ const Tabs = TabNavigator({
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Welcome ninja!</Text>
+      <Provider store={store}>
+        <View style={styles.container}>
+          <Text>Welcome ninja!</Text>
 
-        <Tabs />
-      </View>
+          <Tabs />
+        </View>
+      </Provider>
     );
   }
 }

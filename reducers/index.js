@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux'
 import {
   GET_DECKS,
   GET_DECK,
@@ -9,60 +8,64 @@ import {
   ANSWER_CARD
 } from '../actions/index'
 
+let InitialState = {
+  React: {
+    title: 'React',
+    questions: [
+      {
+        question: 'What is React?',
+        answer: 'A library for managing user interfaces'
+      },
+      {
+        question: 'Where do you make Ajax requests in React?',
+        answer: 'The componentDidMount lifecycle event'
+      }
+    ]
+  },
+  JavaScript: {
+    title: 'JavaScript',
+    questions: [
+      {
+        question: 'What is a closure?',
+        answer: 'The combination of a function and the lexical environment within which that function was declared.'
+      }
+    ]
+  }
+}
 
-let InitialState = {}
 
-function xdeck (state=InitialState, action) {
+export default function xdeck (state=InitialState, action) {
   switch (action.type) {
     case GET_DECKS :
       return {
-        action.decks
+        ...actions.decks
       }
     case GET_DECK :
       return {
-        action.deck
+        state
       }
     case ADD_DECK :
       return {
-        ...state,
-        action.deck
+        state
       }
     case START_QUIZ :
       const newstate = {...state}
       return {
-        ...newstate,
-        action.deckid,
-        action.deckid[questions]
+        state
       }
     case SHOW_RESULTS :
       return {
-        action.deckid,
-        action.deckid[questions]
+        state
       }
-    default :
-    return state
-  }
-}
-
-function xcard (state=InitialState, action) {
-  switch (action.type) {
     case ADD_CARD :
       return {
-        ...state,
-        action.deckid[questions]:card
+        state
       }
     case ANSWER_CARD :
       return {
-        ...state,
-        action.deckid.questions.question.result:result
+        state
       }
     default :
       return state
   }
 }
-
-
-export default combineReducers({
-  xdeck,
-  xcard
-})
