@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, TouchableOpacity } from 'react-native'
 
 export default class BackCard extends React.Component {
   render () {
@@ -8,6 +8,14 @@ export default class BackCard extends React.Component {
         <Text>
           This is the BackCard component
         </Text>
+
+        <View>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate(
+            'Front',
+          )}>
+            <Text>Question</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }

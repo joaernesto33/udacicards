@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, View } from 'react-native'
+import DeckControls from './DeckControls'
 
 export default class Deck extends React.Component {
   render () {
@@ -11,6 +12,7 @@ export default class Deck extends React.Component {
         <Text>
           {this.props.navigation.state.params.deckTitle}
         </Text>
+        <DeckControls navigation={this.props.navigation}/>
       </View>
     )
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import DeckContainer from './components/DeckContainer'
 import QuizContainer from './components/QuizContainer'
 import { TabNavigator, StackNavigator } from 'react-navigation'
@@ -10,6 +10,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
 import Deck from './components/Deck'
+import NewQuestion from './components/NewQuestion'
 
 
 const store = createStore(
@@ -64,6 +65,12 @@ const MainNavigator = StackNavigator ({
   },
   Deck: {
     screen: Deck,
+  },
+  Quiz: {
+    screen: QuizContainer,
+  },
+  NewCard: {
+    screen: NewQuestion,
   }
 })
 
@@ -77,9 +84,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  }
-})

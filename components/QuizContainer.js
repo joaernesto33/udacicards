@@ -7,10 +7,10 @@ import BackCard from './BackCard'
 
 
 const Stack = StackNavigator({
-  Home: {
+  Front: {
     screen: FrontCard
   },
-  Dashboard: {
+  Back: {
     screen: BackCard
   }
 })
@@ -19,7 +19,6 @@ const Stack = StackNavigator({
 export default class QuizContainer extends React.Component {
   render () {
     return (
-
       <Stack />
     )
   }
