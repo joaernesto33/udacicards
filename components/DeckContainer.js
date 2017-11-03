@@ -19,7 +19,7 @@ export default class DeckContainer extends React.Component {
       <View>
       {showDecks.map((deck) => (
         <View>
-          <DeckItem title={deck.title} totalcards={deck.questions.length} navigation={this.props.navigation}/>
+          <DeckItem deck={deck} totalcards={deck.questions.length} navigation={this.props.navigation}/>
         </View>
       ))}
       </View>

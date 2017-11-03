@@ -13,13 +13,13 @@ export default class DeckItem extends React.Component {
       <View>
         <TouchableOpacity onPress={() => this.props.navigation.navigate(
           'Deck',
-          { deckTitle: this.props.title }
+          { deck: this.props.deck }
         )}>
           <Text>
             This is the DeckItem component
           </Text>
           <Text>
-            {this.props.title}
+            {this.props.deck.title}
           </Text>
           <Text>{this.props.totalcards} cards</Text>
           <DeckItemControls />

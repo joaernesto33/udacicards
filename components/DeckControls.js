@@ -9,6 +9,7 @@ export default class DeckControls extends React.Component {
         <View>
           <TouchableOpacity style={styles.btn} onPress={() => this.props.navigation.navigate(
             'Quiz',
+            { deck: this.props.navigation.state.params.deck}
           )}>
             <Text style={styles.btnText}>Quiz</Text>
           </TouchableOpacity>

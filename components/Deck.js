@@ -4,9 +4,6 @@ import DeckControls from './DeckControls'
 
 
 export default class Deck extends React.Component {
-  ComponentDidMount () {
-    //console.log(this.props)
-  }
 
   render () {
     return (
@@ -15,7 +12,7 @@ export default class Deck extends React.Component {
           This is the Deck component
         </Text>
         <Text>
-          {this.props.navigation.state.params.deckTitle}
+          {this.props.navigation.state.params.deck.title}
         </Text>
         <DeckControls navigation={this.props.navigation}/>
       </View>
