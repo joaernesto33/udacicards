@@ -3,7 +3,6 @@ import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
 
 export default class DeckControls extends React.Component {
   render () {
-    console.log(`This props controls: ${this.props.navigation.navigate}`)
     return (
       <View>
         <Text>This is the DeckControls component</Text>

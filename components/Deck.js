@@ -2,7 +2,12 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import DeckControls from './DeckControls'
 
+
 export default class Deck extends React.Component {
+  ComponentDidMount () {
+    //console.log(this.props)
+  }
+
   render () {
     return (
       <View>

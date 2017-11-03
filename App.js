@@ -6,17 +6,9 @@ import { TabNavigator, StackNavigator } from 'react-navigation'
 import NewDeck from './components/NewDeck'
 import Results from './components/Results'
 import { gray, white } from './utils/colors'
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
-import reducer from './reducers'
 import Deck from './components/Deck'
 import NewQuestion from './components/NewQuestion'
 
-
-const store = createStore(
-  reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
 
 
 const Tabs = TabNavigator({
@@ -77,10 +69,7 @@ const MainNavigator = StackNavigator ({
 export default class App extends React.Component {
   render() {
     return (
-      <Provider store={store}>
-
-        <MainNavigator />
-      </Provider>
+      <MainNavigator />
     );
   }
 }

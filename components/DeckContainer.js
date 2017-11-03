@@ -1,20 +1,19 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 import DeckItem from './DeckItem'
-import { connect } from 'react-redux'
+import { InitialState } from '../utils/helpers'
 
 
 
-class DeckContainer extends React.Component {
+export default class DeckContainer extends React.Component {
   ComponentDidMount () {
-    this.props.getAllDecks()
+
   }
   render () {
-    console.log(this.props.deckslist)
-    console.log(this.props.state)
     let showDecks = []
-    if (this.props.state !== undefined)
-      showDecks = Object.values(this.props.state)
+    showDecks = Object.values(InitialState)
+    //if (this.props.deckslist !== undefined)
+    //  showDecks = this.props.deckslist
 
     return (
       <View>
@@ -27,20 +26,3 @@ class DeckContainer extends React.Component {
     )
   }
 }
-
-function mapStateToProps (state) {
-  let deckslist = Object.values(state)
-  return {
-    deckslist,
-    state
-  }
-}
-
-function mapDispatchToProps (dispatch) {
-  return {
-    getAllDecks: (decks) => dispatch(getDecks(data))
-  }
-}
-
-
-export default connect(mapStateToProps,mapDispatchToProps)(DeckContainer)
