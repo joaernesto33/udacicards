@@ -16,21 +16,22 @@ export default class QuizContainer extends React.Component {
   }
 
   next = (score) => {
-    if (this.state.questionIndex === this.props.navigation.state.params.deck.questions.length-1) {
-      console.log('This is the last question')
-    } else {
-      if (score === 'correct'){
-        let add = this.state.score + 1
-        this.setState(() => ({
-          score : add
-        }))
-      }
-
+    if (this.state.questionIndex < this.props.navigation.state.params.deck.questions.length-1) {
       let next = this.state.questionIndex + 1
       this.setState (() => ({
         questionIndex: next
       }))
       console.log(this.state)
+
+    } else {
+      console.log('This is the last question')
+    }
+
+    if (score === 'correct'){
+      let add = this.state.score + 1
+      this.setState(() => ({
+        score : add
+      }))
     }
   }
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import { AsyncStorage } from 'react-native'
 
+const TOKEN_KEY = 'TOKEN:mykey'
 
 export const InitialState = {
   React: {
@@ -27,24 +28,30 @@ export const InitialState = {
   }
 }
 
-export function getDecks () {
-  return AsyncStorage.getAllKeys ()
-    .then(results)
+export async function getDecks () {
+  const Decks = await AsyncStorage.getItem(TOKEN_KEY)
+  if (Decks !== null)
+    return JSON.parse(Decks)
+
 }
 
-export function getDeck (id) {
-  return AsyncStorage.getItem(id)
-    .then(deckResults)
+/*export function getDeck (id) {
+  return AsyncStorage.getItem(TOKEN_KEY,id)
+}*/
+
+
+
+export function saveDeckTitle (payload) {
+  objDeck = JSON.stringify(payload)
+  return AsyncStorage.mergeItem(TOKEN_KEY, objDeck)
 }
 
-export function saveDeckTitle (title) {
-  return AsyncStorage.setItem(title, JSON.stringify({
-    [title]: title,
-  }))
-}
-
-export function addCardToDeck (title, card) {
-  return AsyncStorage.mergeItem(title, JSON.stringify({
+export function addCardToDeck (card) {
+  return AsyncStorage.mergeItem(TOKEN_KEY, JSON.stringify({
     [title]: questions.card,
   }))
+}
+
+export function clearDecks () {
+  return AsyncStorage.clear()
 }
