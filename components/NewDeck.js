@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
-import { saveDeckTitle, getDecks, InitialState } from '../utils/helpers'
+import { saveDeckTitle, getDecks } from '../utils/helpers'
 
 export default class NewDeck extends React.Component {
   state ={

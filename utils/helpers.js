@@ -28,6 +28,7 @@ export const InitialState = {
   }
 }
 
+
 export async function getDecks () {
   const Decks = await AsyncStorage.getItem(TOKEN_KEY)
   if (Decks !== null)
@@ -35,22 +36,29 @@ export async function getDecks () {
 
 }
 
-/*export function getDeck (id) {
-  return AsyncStorage.getItem(TOKEN_KEY,id)
-}*/
-
-
 
 export function saveDeckTitle (payload) {
   objDeck = JSON.stringify(payload)
   return AsyncStorage.mergeItem(TOKEN_KEY, objDeck)
 }
 
-export function addCardToDeck (card) {
-  return AsyncStorage.mergeItem(TOKEN_KEY, JSON.stringify({
-    [title]: questions.card,
-  }))
+
+export function addCardToDeck(key, card) {
+  return AsyncStorage.getItem(TOKEN_KEY)
+    .then((results) => JSON.parse(results))
+    .then((parsedData) => {
+      return parsedData[key]
+    })
+    .then((actualDeck) => {
+      actualDeck.questions.push(card)
+      return actualDeck
+    })
+    .then((finalDeck) => {
+      objDeck = JSON.stringify({[key]:finalDeck})
+      AsyncStorage.mergeItem(TOKEN_KEY, objDeck)
+    })
 }
+
 
 export function clearDecks () {
   return AsyncStorage.clear()
