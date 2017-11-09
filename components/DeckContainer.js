@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
 import DeckItem from './DeckItem'
-import { InitialState, clearDecks, getDecks } from '../utils/helpers'
+import { InitialState, clearDecks, getDecks, getNotifications } from '../utils/helpers'
 
 
 
@@ -25,6 +25,10 @@ export default class DeckContainer extends React.Component {
 
   showme = () => {
     getDecks()
+    .then((data) => {
+      console.log(data)
+    })
+    getNotifications()
     .then((data) => {
       console.log(data)
     })

@@ -8,6 +8,7 @@ import Results from './components/Results'
 import { gray, white } from './utils/colors'
 import Deck from './components/Deck'
 import NewQuestion from './components/NewQuestion'
+import { setLocalNotification } from './utils/helpers'
 
 
 
@@ -67,6 +68,9 @@ const MainNavigator = StackNavigator ({
 })
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
   render() {
     return (
       <MainNavigator />

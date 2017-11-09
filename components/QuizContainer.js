@@ -2,6 +2,7 @@ import React from 'react'
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
 import FrontCard from './FrontCard'
 import BackCard from './BackCard'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 
 
@@ -48,6 +49,11 @@ export default class QuizContainer extends React.Component {
 
   }
 
+  clear = () => {
+    clearLocalNotification()
+      .then(setLocalNotification())
+  }
+
   render () {
     console.log(this.state)
 
@@ -76,6 +82,11 @@ export default class QuizContainer extends React.Component {
         <View>
           <TouchableOpacity style={styles.btn} onPress={() => this.next('incorrect')}>
             <Text style={styles.btnText}>Incorrect</Text>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <TouchableOpacity style={styles.btn} onPress={() => this.clear()}>
+            <Text style={styles.btnText}>Clear Notifications</Text>
           </TouchableOpacity>
         </View>
       </View>
