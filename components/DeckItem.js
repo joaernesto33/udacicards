@@ -1,8 +1,5 @@
 import React from 'react'
-import { Text, View, TouchableOpacity } from 'react-native'
-import DeckItemControls from './DeckItemControls'
-
-
+import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
 
 
 
@@ -18,14 +15,26 @@ export default class DeckItem extends React.Component {
           <Text>
             This is the DeckItem component
           </Text>
-          <Text>
+          <Text style={styles.title}>
             {this.props.deck.title}
           </Text>
-          <Text>{this.props.totalcards} cards</Text>
-          <DeckItemControls />
+          <Text style={styles.details}>{this.props.totalcards} cards</Text>
         </TouchableOpacity>
       </View>
 
     )
   }
 }
+
+let styles = StyleSheet.create({
+  title: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    fontFamily: 'Roboto'
+  },
+  details: {
+    color: 'green',
+    padding: 30,
+    fontSize: 20
+  }
+})

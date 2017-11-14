@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, StyleSheet } from 'react-native'
 import DeckControls from './DeckControls'
 
 
@@ -11,7 +11,7 @@ export default class Deck extends React.Component {
         <Text>
           This is the Deck component
         </Text>
-        <Text>
+        <Text style={styles.quizName}>
           {this.props.navigation.state.params.deck.title}
         </Text>
         <DeckControls navigation={this.props.navigation}/>
@@ -19,3 +19,10 @@ export default class Deck extends React.Component {
     )
   }
 }
+
+let styles = StyleSheet.create({
+  quizName: {
+    fontSize: 45,
+    fontFamily: 'Roboto'
+  }
+})

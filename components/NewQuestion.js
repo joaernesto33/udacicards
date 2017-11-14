@@ -10,8 +10,7 @@ export default class NewQuestion extends React.Component {
 
   submit = (value) => {
     console.log(value)
-    const { question, answer } = this.state
-    addCardToDeck('Deusto',this.state)
+    addCardToDeck(this.props.navigation.state.params.deck.title, this.state)
   }
 
   handleTextChangeQ = (question) => {
@@ -33,11 +32,13 @@ export default class NewQuestion extends React.Component {
         <TextInput
           placeholder={this.state.question}
           onChangeText={this.handleTextChangeQ}
+          style={styles.textbox}
         />
 
         <TextInput
           placeholder={this.state.answer}
           onChangeText={this.handleTextChangeA}
+          style={styles.textbox}
         />
 
         <View>
@@ -53,15 +54,24 @@ export default class NewQuestion extends React.Component {
 
 const styles = StyleSheet.create({
   btn: {
-    backgroundColor: '#E53224',
+    backgroundColor: 'darkslategrey',
     padding: 10,
-    paddingLeft: 50,
-    paddingRight: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
+    paddingLeft: 30,
+    paddingRight: 30,
+    height: 45,
     borderRadius: 5,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',   
   },
   btnText: {
-    color: '#fff'
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold'
+  },
+  textbox: {
+    borderWidth: 1,
+    height: 40,
+    width: 275
   }
 })

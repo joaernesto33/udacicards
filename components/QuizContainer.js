@@ -68,19 +68,19 @@ export default class QuizContainer extends React.Component {
         <View>
           <TouchableOpacity onPress={() => this.flipCard()}>
             {this.state.frontCard === true
-            ? <Text>Answer</Text>
-            : <Text>Question</Text>
+            ? <Text style={styles.detailsAnswer}>Answer</Text>
+            : <Text style={styles.detailQuestion}>Question</Text>
             }
           </TouchableOpacity>
         </View>
 
         <View>
-          <TouchableOpacity style={styles.btn} onPress={() => this.next('correct')}>
+          <TouchableOpacity style={styles.btnCorrect} onPress={() => this.next('correct')}>
             <Text style={styles.btnText}>Correct</Text>
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity style={styles.btn} onPress={() => this.next('incorrect')}>
+          <TouchableOpacity style={styles.btnIncorrect} onPress={() => this.next('incorrect')}>
             <Text style={styles.btnText}>Incorrect</Text>
           </TouchableOpacity>
         </View>
@@ -105,7 +105,41 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 5,
   },
+  btnCorrect: {
+    backgroundColor: '#E53224',
+    padding: 10,
+    paddingLeft: 30,
+    paddingRight: 30,
+    height: 45,
+    borderRadius: 5,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  btnIncorrect: {
+    backgroundColor: '#E53224',
+    padding: 10,
+    paddingLeft: 30,
+    paddingRight: 30,
+    height: 45,
+    borderRadius: 5,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   btnText: {
-    color: '#fff'
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold'
+  },
+  detailsAnswer: {
+    color: 'green',
+    padding: 20,
+    fontSize: 20
+  },
+  detailQuestion: {
+    color: 'blue',
+    padding: 20,
+    fontSize: 20
   }
 })

@@ -37,7 +37,10 @@ export async function getDecks () {
   const Decks = await AsyncStorage.getItem(TOKEN_KEY)
   if (Decks !== null)
     return JSON.parse(Decks)
-
+  else {
+    saveDeckTitle(InitialState)
+    return InitialState
+  }
 }
 
 

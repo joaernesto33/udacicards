@@ -5,6 +5,7 @@ import { InitialState, clearDecks, getDecks, getNotifications } from '../utils/h
 
 
 
+
 export default class DeckContainer extends React.Component {
   state = {
     listDecks : {}
@@ -41,13 +42,14 @@ export default class DeckContainer extends React.Component {
     console.log(this.state.listDecks.Bilbao)
 
 
-    showDecks = Object.values(InitialState)
+    //showDecks = Object.values(InitialState)
+    showDecks = Object.values(this.state.listDecks)
 
 
     return (
       <View>
-      {showDecks.map((deck) => (
-        <View>
+      {showDecks.map((deck, index) => (
+        <View key={index} style={styles.item}>
           <DeckItem deck={deck} totalcards={deck.questions.length} navigation={this.props.navigation}/>
         </View>
       ))}
@@ -80,5 +82,22 @@ const styles = StyleSheet.create({
   },
   btnText: {
     color: '#fff'
+  },
+  item: {
+    backgroundColor: 'lightgrey',
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 17,
+    shadowRadius: 3,
+    shadowOpacity: 0.8,
+    shadowColor: 'rgba(0,0,0,0.24)',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    }
   }
 })

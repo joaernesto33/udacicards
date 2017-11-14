@@ -5,7 +5,6 @@ import QuizContainer from './components/QuizContainer'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import NewDeck from './components/NewDeck'
 import Results from './components/Results'
-import { gray, white } from './utils/colors'
 import Deck from './components/Deck'
 import NewQuestion from './components/NewQuestion'
 import { setLocalNotification } from './utils/helpers'
@@ -36,10 +35,10 @@ const Tabs = TabNavigator({
     header: null
   },
   tabBarOptions: {
-    activeTintColor: white,
+    activeTintColor: 'white',
     style: {
       height: 56,
-      backgroundColor: gray,
+      backgroundColor: 'darkslategrey',
       //shadowColor: 'rgb(0, 0, 0, 0.24)',
       shadowOffset: {
         width: 0,
