@@ -2,6 +2,7 @@ import React from 'react'
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
 import FrontCard from './FrontCard'
 import BackCard from './BackCard'
+import Results from './Results'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 
@@ -59,7 +60,7 @@ export default class QuizContainer extends React.Component {
 
     let actualQuestion = this.props.navigation.state.params.deck.questions
     return (
-      <View>
+      <View style={styles.container}>
         {this.state.frontCard === true
           ? <FrontCard question={actualQuestion[this.state.questionIndex].question}/>
           : <BackCard answer={actualQuestion[this.state.questionIndex].answer}/>
@@ -68,26 +69,30 @@ export default class QuizContainer extends React.Component {
         <View>
           <TouchableOpacity onPress={() => this.flipCard()}>
             {this.state.frontCard === true
-            ? <Text style={styles.detailsAnswer}>Answer</Text>
-            : <Text style={styles.detailQuestion}>Question</Text>
+              ? <Text style={styles.detailsAnswer}>Answer</Text>
+              : <Text style={styles.detailQuestion}>Question</Text>
             }
           </TouchableOpacity>
         </View>
 
-        <View>
+        <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.btnCorrect} onPress={() => this.next('correct')}>
             <Text style={styles.btnText}>Correct</Text>
           </TouchableOpacity>
         </View>
-        <View>
+        <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.btnIncorrect} onPress={() => this.next('incorrect')}>
             <Text style={styles.btnText}>Incorrect</Text>
           </TouchableOpacity>
         </View>
-        <View>
+        <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.btn} onPress={() => this.clear()}>
             <Text style={styles.btnText}>Clear Notifications</Text>
           </TouchableOpacity>
+        </View>
+
+        <View>
+          <Results score={this.state.score}/>
         </View>
       </View>
     )
@@ -96,32 +101,50 @@ export default class QuizContainer extends React.Component {
 
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginLeft: 20,
+    marginRight: 20,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  btnContainer: {
+    marginLeft: 50,
+    marginRight: 50,
+    height: 75,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   btn: {
     backgroundColor: '#E53224',
     padding: 10,
     paddingLeft: 50,
     paddingRight: 50,
+    width: 300,
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'center',
     borderRadius: 5,
   },
   btnCorrect: {
-    backgroundColor: '#E53224',
+    backgroundColor: 'darkgreen',
     padding: 10,
     paddingLeft: 30,
     paddingRight: 30,
     height: 45,
+    width: 200,
     borderRadius: 5,
     alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
   },
   btnIncorrect: {
-    backgroundColor: '#E53224',
+    backgroundColor: 'darkred',
     padding: 10,
     paddingLeft: 30,
     paddingRight: 30,
     height: 45,
+    width: 200,
     borderRadius: 5,
     alignSelf: 'center',
     justifyContent: 'center',
@@ -133,12 +156,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   detailsAnswer: {
-    color: 'green',
+    color: 'darkblue',
     padding: 20,
     fontSize: 20
   },
   detailQuestion: {
-    color: 'blue',
+    color: 'darkblue',
     padding: 20,
     fontSize: 20
   }

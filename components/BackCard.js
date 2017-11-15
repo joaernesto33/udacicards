@@ -4,7 +4,7 @@ import { Text, View, StyleSheet } from 'react-native'
 export default class BackCard extends React.Component {
   render () {
     return (
-      <View>
+      <View style={styles.textContainer}>
         <Text>
           This is the BackCard component
         </Text>
@@ -15,9 +15,14 @@ export default class BackCard extends React.Component {
 }
 
 let styles = StyleSheet.create({
+  textContainer: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   answer: {
     fontSize: 35,
     fontFamily: 'Roboto',
-    color: 'green'
+    color: 'green',
+    alignSelf: 'center'
   }
 })

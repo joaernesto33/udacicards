@@ -5,7 +5,7 @@ export default class FrontCard extends React.Component {
 
   render () {
     return (
-      <View>
+      <View style={styles.textContainer}>
         <Text>
           This is the FrontCard component
         </Text>
@@ -16,8 +16,13 @@ export default class FrontCard extends React.Component {
 }
 
 let styles = StyleSheet.create({
+  textContainer: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   question: {
     fontSize: 50,
-    fontFamily: 'Roboto'
+    fontFamily: 'Roboto',
+    alignSelf: 'center'
   }
 })

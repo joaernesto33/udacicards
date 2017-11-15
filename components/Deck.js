@@ -7,7 +7,7 @@ export default class Deck extends React.Component {
 
   render () {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>
           This is the Deck component
         </Text>
@@ -21,6 +21,13 @@ export default class Deck extends React.Component {
 }
 
 let styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginLeft: 50,
+    marginRight: 50,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   quizName: {
     fontSize: 45,
     fontFamily: 'Roboto'

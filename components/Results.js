@@ -8,6 +8,11 @@ export default class Results extends React.Component {
         <Text>
           This is the results component
         </Text>
+        <View>
+          <Text>
+            You have {this.props.score} correct answers !!
+          </Text>
+        </View>
       </View>
     )
   }
