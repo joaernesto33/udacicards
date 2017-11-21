@@ -20,7 +20,7 @@ let styles = StyleSheet.create({
     justifyContent: 'center'
   },
   answer: {
-    fontSize: 35,
+    fontSize: 25,
     fontFamily: 'Roboto',
     color: 'green',
     alignSelf: 'center'

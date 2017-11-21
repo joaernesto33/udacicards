@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
+import { Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import DeckItem from './DeckItem'
 import { InitialState, clearDecks, getDecks, getNotifications } from '../utils/helpers'
 
@@ -12,6 +12,7 @@ export default class DeckContainer extends React.Component {
   }
 
   componentDidMount () {
+
     getDecks()
     .then((data) => {
       this.setState(() => ({
@@ -39,20 +40,22 @@ export default class DeckContainer extends React.Component {
     let showDecks = []
 
     console.log(this.state)
-    console.log(this.state.listDecks.Bilbao)
 
-
-    //showDecks = Object.values(InitialState)
-    showDecks = Object.values(this.state.listDecks)
-
+    //showDecks = Object.values(InitialState)   
+    showDecks = Object.values(this.state.listDecks) 
 
     return (
       <View>
+      <ScrollView>
+
       {showDecks.map((deck, index) => (
+
         <View key={index} style={styles.item}>
           <DeckItem deck={deck} totalcards={deck.questions.length} navigation={this.props.navigation}/>
         </View>
+
       ))}
+
       <View>
         <TouchableOpacity style={styles.btn} onPress={() => this.clear()}>
           <Text style={styles.btnText}>Clear Data</Text>
@@ -64,6 +67,8 @@ export default class DeckContainer extends React.Component {
           <Text style={styles.btnText}>Show Data</Text>
         </TouchableOpacity>
       </View>
+
+      </ScrollView>
       </View>
     )
   }

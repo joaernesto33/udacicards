@@ -1,9 +1,10 @@
 import React from 'react'
-import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
+import { Text, View, TouchableOpacity, StyleSheet, Modal, TouchableHighlight } from 'react-native'
 import FrontCard from './FrontCard'
 import BackCard from './BackCard'
 import Results from './Results'
 import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
+import { NavigationActions } from 'react-navigation'
 
 
 
@@ -13,7 +14,8 @@ export default class QuizContainer extends React.Component {
     this.state = {
       questionIndex: 0,
       frontCard: true,
-      score: 0
+      score: 0,
+      modalVisible: false
     }
   }
 
@@ -25,16 +27,25 @@ export default class QuizContainer extends React.Component {
       }))
       console.log(this.state)
 
+      if (score === 'correct'){
+        let add = this.state.score + 1
+        this.setState(() => ({
+          score : add
+        }))
+      }
+
     } else {
       console.log('This is the last question')
+      
+      if (score === 'correct'){
+        let add = this.state.score + 1
+        this.setState(() => ({
+          score: add
+        }))
+      }
+      this.setModalVisible(true)
     }
-
-    if (score === 'correct'){
-      let add = this.state.score + 1
-      this.setState(() => ({
-        score : add
-      }))
-    }
+    
   }
 
   flipCard = () => {
@@ -55,6 +66,35 @@ export default class QuizContainer extends React.Component {
       .then(setLocalNotification())
   }
 
+  handleDeck(visible) {
+    this.setState({ modalVisible: visible })
+    
+    this.props.navigation.navigate(
+      'Deck',
+      { deck: this.props.navigation.state.params.deck }
+    )
+  }
+
+  setModalVisibleQuiz(visible) {
+    this.setState({ modalVisible: visible })
+    
+    this.setState(() => ({
+      questionIndex: 0,
+      frontCard: true,
+      score: 0    
+    }))
+  }
+
+  goBackDecks(visible) {
+    this.setState({ modalVisible: visible })
+
+    this.props.navigation.navigate('Home')
+  }
+
+  setModalVisible(visible) {
+    this.setState({ modalVisible: visible })
+  }
+
   render () {
     console.log(this.state)
 
@@ -62,7 +102,11 @@ export default class QuizContainer extends React.Component {
     return (
       <View style={styles.container}>
         {this.state.frontCard === true
-          ? <FrontCard question={actualQuestion[this.state.questionIndex].question}/>
+          ? <FrontCard 
+              question={actualQuestion[this.state.questionIndex].question} 
+              totalquestions={this.props.navigation.state.params.deck.questions.length}
+              actualquestion={this.state.questionIndex + 1}
+            />
           : <BackCard answer={actualQuestion[this.state.questionIndex].answer}/>
         }
 
@@ -94,6 +138,42 @@ export default class QuizContainer extends React.Component {
         <View>
           <Results score={this.state.score}/>
         </View>
+
+        <View style={{marginTop: 22}}>
+          <Modal
+            animationType="slide"
+            transparent={false}
+            visible={this.state.modalVisible}
+            onRequestClose={() => {alert("Modal has been closed.")}}
+          >
+            <View style={{marginTop: 22}}>
+              <View>
+                <Text>Hello World!</Text>
+                <Results score={this.state.score}/>
+
+                <TouchableHighlight onPress={() => {
+                  this.handleDeck(!this.state.modalVisible) 
+                }}>
+                  <Text>Back to Deck</Text>
+                </TouchableHighlight>
+
+                <TouchableHighlight onPress={() => {
+                  this.setModalVisibleQuiz(!this.state.modalVisible)
+                }}>
+                  <Text>Restart Quiz</Text>
+                </TouchableHighlight>
+
+                <TouchableHighlight onPress={() => {
+                  this.goBackDecks(!this.state.modalVisible)
+                }}>
+                  <Text> Go back to Deck list</Text>
+                </TouchableHighlight>
+              </View>
+            </View>
+          </Modal>
+        </View>
+
+
       </View>
     )
   }

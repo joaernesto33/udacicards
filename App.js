@@ -23,12 +23,6 @@ const Tabs = TabNavigator({
     navigationOptions: {
       tabBarLabel: 'New Deck',
     }
-  },
-  Scores: {
-    screen: Results,
-    navigationOptions: {
-      tabBarLabel: 'Show Results',
-    }
   }
 }, {
   navigationOptions: {

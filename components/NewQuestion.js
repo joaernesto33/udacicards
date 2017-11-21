@@ -1,6 +1,7 @@
 import React from 'react'
-import { Text, View, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
+import { Text, View, TextInput, TouchableOpacity, StyleSheet, KeyboardAvoidingView } from 'react-native'
 import { addCardToDeck } from '../utils/helpers'
+import { NavigationActions } from 'react-navigation'
 
 export default class NewQuestion extends React.Component {
   state = {
@@ -10,7 +11,30 @@ export default class NewQuestion extends React.Component {
 
   submit = (value) => {
     console.log(value)
+    
+    /*addCardToDeck(this.props.navigation.state.params.deck.title, this.state)
+    .then(this.props.navigation.navigate(
+      'Home',
+      { path: true }
+    ))*/
+    
     addCardToDeck(this.props.navigation.state.params.deck.title, this.state)
+    .then(() => {
+      console.log(`Added`)
+
+      const navigateAction = NavigationActions.reset({
+        index: 0,
+        actions: [
+          NavigationActions.navigate({ routeName: 'Home' })
+        ]      
+      })
+
+      this.props.navigation.dispatch(navigateAction)
+    })
+      
+    //)
+    
+    
   }
 
   handleTextChangeQ = (question) => {
@@ -27,19 +51,25 @@ export default class NewQuestion extends React.Component {
 
   render () {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior='padding' style={styles.container}>
+        
+        <View>
         <Text>This is the NewQuestion component</Text>
         <TextInput
           placeholder={this.state.question}
           onChangeText={this.handleTextChangeQ}
           style={styles.textbox}
         />
-        <View></View>
+        </View>
+
+        <View>
+        <Text>This is the NewQuestion component</Text>
         <TextInput
           placeholder={this.state.answer}
           onChangeText={this.handleTextChangeA}
           style={styles.textbox}
         />
+        </View>
 
         <View style={styles.btnContainer}>
           <TouchableOpacity style={styles.btn} onPress={() => this.submit(this.state)}>
@@ -47,7 +77,7 @@ export default class NewQuestion extends React.Component {
           </TouchableOpacity>
         </View>
 
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }

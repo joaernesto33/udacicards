@@ -1,15 +1,15 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, StyleSheet } from 'react-native'
 
 export default class Results extends React.Component {
   render () {
     return (
-      <View>
+      <View >
         <Text>
           This is the results component
         </Text>
         <View>
-          <Text>
+          <Text style={styles.resultText}>
             You have {this.props.score} correct answers !!
           </Text>
         </View>
@@ -17,3 +17,18 @@ export default class Results extends React.Component {
     )
   }
 }
+
+let styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginLeft: 25,
+    marginRight: 25,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  resultText: {
+    fontSize: 35,
+    fontFamily: 'Roboto',
+    alignSelf: 'center'
+  }
+})

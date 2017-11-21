@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
+import { Text, View, TextInput, TouchableOpacity, StyleSheet, KeyboardAvoidingView } from 'react-native'
 import { saveDeckTitle, getDecks } from '../utils/helpers'
 
 export default class NewDeck extends React.Component {
@@ -10,6 +10,7 @@ export default class NewDeck extends React.Component {
   submit = (value) => {
     let newdeck = {[value]:{title:value,questions:[]}}
     saveDeckTitle(newdeck)
+    this.props.navigation.navigate('Home')
   }
 
 
@@ -20,21 +21,21 @@ export default class NewDeck extends React.Component {
   }
   render () {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior='padding' style={styles.container}>
 
-        <Text>First page New Deck</Text>
-        <TextInput
-          placeholder={this.state.input}
-          onChangeText={this.handleTextChange}
-          style={styles.textbox}
-        />
+       <Text> What is the title of your new deck? </Text>
+       <TextInput
+         placeholder={this.state.input}
+         onChangeText={this.handleTextChange}
+         style={styles.textbox}
+       />
 
-        <View style={styles.btnContainer}>
-          <TouchableOpacity style={styles.btn} onPress={() => this.submit(this.state.input)}>
-            <Text style={styles.btnText}>SUBMIT</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+       <View style={styles.btnContainer}>
+         <TouchableOpacity style={styles.btn} onPress={() => this.submit(this.state.input)}>
+           <Text style={styles.btnText}>SUBMIT</Text>
+         </TouchableOpacity>
+       </View>
+      </KeyboardAvoidingView>
     )
   }
 }
