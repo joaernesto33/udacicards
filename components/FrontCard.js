@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { Text, View, StyleSheet, Platform } from 'react-native'
 
 export default class FrontCard extends React.Component {
 
@@ -22,12 +22,10 @@ let styles = StyleSheet.create({
   },
   question: {
     fontSize: 35,
-    fontFamily: 'Roboto',
+    fontFamily: Platform.OS === 'ios' ?'San Francisco' :'Roboto',
     alignSelf: 'center'
   },
   indexContainer: {
-    //justifyContent: 'flex-end',
-    //alignItems: 'flex-end',
     alignSelf: 'flex-end'
   }
 })

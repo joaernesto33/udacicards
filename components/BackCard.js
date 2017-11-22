@@ -1,13 +1,10 @@
 import React from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { Text, View, StyleSheet, Platform } from 'react-native'
 
 export default class BackCard extends React.Component {
   render () {
     return (
       <View style={styles.textContainer}>
-        <Text>
-          This is the BackCard component
-        </Text>
         <Text style={styles.answer}>{this.props.answer}</Text>
       </View>
     )
@@ -21,7 +18,7 @@ let styles = StyleSheet.create({
   },
   answer: {
     fontSize: 25,
-    fontFamily: 'Roboto',
+    fontFamily: Platform.OS === 'ios' ?'San Francisco' :'Roboto',
     color: 'green',
     alignSelf: 'center'
   }

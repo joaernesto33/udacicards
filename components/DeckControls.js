@@ -2,15 +2,21 @@ import React from 'react'
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
 
 export default class DeckControls extends React.Component {
+
+  handleQuiz() {
+
+    if (this.props.navigation.state.params.deck.questions.length != 0) {
+      this.props.navigation.navigate(
+        'Quiz',
+        { deck: this.props.navigation.state.params.deck }
+      )
+    } 
+  }
   render () {
     return (
       <View style={styles.container}>
-        <Text>This is the DeckControls component</Text>
         <View style={styles.btnContainer}>
-          <TouchableOpacity style={styles.btn} onPress={() => this.props.navigation.navigate(
-            'Quiz',
-            { deck: this.props.navigation.state.params.deck}
-          )}>
+          <TouchableOpacity style={styles.btn} onPress={() => this.handleQuiz()}>
             <Text style={styles.btnText}>Quiz</Text>
           </TouchableOpacity>
         </View>

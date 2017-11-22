@@ -33,7 +33,6 @@ const Tabs = TabNavigator({
     style: {
       height: 56,
       backgroundColor: 'darkslategrey',
-      //shadowColor: 'rgb(0, 0, 0, 0.24)',
       shadowOffset: {
         width: 0,
         height: 3

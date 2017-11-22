@@ -21,27 +21,10 @@ export default class DeckContainer extends React.Component {
     })
   }
 
-  clear = () => {
-    console.log(clearDecks())
-  }
-
-  showme = () => {
-    getDecks()
-    .then((data) => {
-      console.log(data)
-    })
-    getNotifications()
-    .then((data) => {
-      console.log(data)
-    })
-  }
-
   render () {
     let showDecks = []
 
     console.log(this.state)
-
-    //showDecks = Object.values(InitialState)   
     showDecks = Object.values(this.state.listDecks) 
 
     return (
@@ -56,18 +39,6 @@ export default class DeckContainer extends React.Component {
 
       ))}
 
-      <View>
-        <TouchableOpacity style={styles.btn} onPress={() => this.clear()}>
-          <Text style={styles.btnText}>Clear Data</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View>
-        <TouchableOpacity style={styles.btn} onPress={() => this.showme()}>
-          <Text style={styles.btnText}>Show Data</Text>
-        </TouchableOpacity>
-      </View>
-
       </ScrollView>
       </View>
     )
@@ -76,18 +47,6 @@ export default class DeckContainer extends React.Component {
 
 
 const styles = StyleSheet.create({
-  btn: {
-    backgroundColor: '#E53224',
-    padding: 10,
-    paddingLeft: 50,
-    paddingRight: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 5,
-  },
-  btnText: {
-    color: '#fff'
-  },
   item: {
     backgroundColor: 'lightgrey',
     borderRadius: 25,

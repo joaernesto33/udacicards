@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
+import { Text, View, TouchableOpacity, StyleSheet, Platform } from 'react-native'
 
 
 
@@ -12,16 +12,12 @@ export default class DeckItem extends React.Component {
           'Deck',
           { deck: this.props.deck }
         )}>
-          <Text>
-            This is the DeckItem component
-          </Text>
           <Text style={styles.title}>
             {this.props.deck.title}
           </Text>
           <Text style={styles.details}>{this.props.totalcards} cards</Text>
         </TouchableOpacity>
       </View>
-
     )
   }
 }
@@ -30,7 +26,7 @@ let styles = StyleSheet.create({
   title: {
     fontSize: 40,
     fontWeight: 'bold',
-    fontFamily: 'Roboto'
+    fontFamily: Platform.OS === 'ios' ?'San Francisco' :'Roboto',
   },
   details: {
     color: 'green',

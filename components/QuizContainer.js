@@ -25,7 +25,6 @@ export default class QuizContainer extends React.Component {
       this.setState (() => ({
         questionIndex: next
       }))
-      console.log(this.state)
 
       if (score === 'correct'){
         let add = this.state.score + 1
@@ -35,7 +34,6 @@ export default class QuizContainer extends React.Component {
       }
 
     } else {
-      console.log('This is the last question')
       
       if (score === 'correct'){
         let add = this.state.score + 1
@@ -96,7 +94,6 @@ export default class QuizContainer extends React.Component {
   }
 
   render () {
-    console.log(this.state)
 
     let actualQuestion = this.props.navigation.state.params.deck.questions
     return (
@@ -129,15 +126,6 @@ export default class QuizContainer extends React.Component {
             <Text style={styles.btnText}>Incorrect</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.btnContainer}>
-          <TouchableOpacity style={styles.btn} onPress={() => this.clear()}>
-            <Text style={styles.btnText}>Clear Notifications</Text>
-          </TouchableOpacity>
-        </View>
-
-        <View>
-          <Results score={this.state.score}/>
-        </View>
 
         <View style={{marginTop: 22}}>
           <Modal
@@ -148,26 +136,33 @@ export default class QuizContainer extends React.Component {
           >
             <View style={{marginTop: 22}}>
               <View>
-                <Text>Hello World!</Text>
+                <View></View>
                 <Results score={this.state.score}/>
 
-                <TouchableHighlight onPress={() => {
+                <View style={styles.btnContainer}>
+                <TouchableOpacity style={styles.btn} onPress={() => {
                   this.handleDeck(!this.state.modalVisible) 
                 }}>
-                  <Text>Back to Deck</Text>
-                </TouchableHighlight>
+                  <Text style={styles.btnText}>Back to Deck</Text>
+                </TouchableOpacity>
+                </View>
 
-                <TouchableHighlight onPress={() => {
+                <View style={styles.btnContainer}>
+                <TouchableOpacity style={styles.btn} onPress={() => {
                   this.setModalVisibleQuiz(!this.state.modalVisible)
                 }}>
-                  <Text>Restart Quiz</Text>
-                </TouchableHighlight>
+                  <Text style={styles.btnText}>Restart Quiz</Text>
+                </TouchableOpacity>
+                </View>
 
-                <TouchableHighlight onPress={() => {
+                <View style={styles.btnContainer}>
+                <TouchableOpacity style={styles.btn} onPress={() => {
                   this.goBackDecks(!this.state.modalVisible)
                 }}>
-                  <Text> Go back to Deck list</Text>
-                </TouchableHighlight>
+                  <Text style={styles.btnText}> Go to Deck list</Text>
+                </TouchableOpacity>
+                </View>
+
               </View>
             </View>
           </Modal>
@@ -196,14 +191,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   btn: {
-    backgroundColor: '#E53224',
+    backgroundColor: 'darkslategrey',
     padding: 10,
-    paddingLeft: 50,
-    paddingRight: 50,
-    width: 300,
+    paddingLeft: 30,
+    paddingRight: 30,
+    height: 45,
+    width: 200,
+    alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
-    alignSelf: 'center',
     borderRadius: 5,
   },
   btnCorrect: {

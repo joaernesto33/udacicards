@@ -1,6 +1,14 @@
 import React from 'react'
-import { Text, View, TextInput, TouchableOpacity, StyleSheet, KeyboardAvoidingView } from 'react-native'
+import { Keyboard, 
+  Text, 
+  View, 
+  TextInput, 
+  TouchableOpacity, 
+  StyleSheet, 
+  KeyboardAvoidingView,
+  Platform } from 'react-native'
 import { saveDeckTitle, getDecks } from '../utils/helpers'
+
 
 export default class NewDeck extends React.Component {
   state ={
@@ -8,9 +16,18 @@ export default class NewDeck extends React.Component {
   }
 
   submit = (value) => {
-    let newdeck = {[value]:{title:value,questions:[]}}
-    saveDeckTitle(newdeck)
-    this.props.navigation.navigate('Home')
+
+    if (value != '') {
+      let newdeck = {[value]:{title:value,questions:[]}}
+      let routedeck = {title:value,questions:[]}
+      Keyboard.dismiss()
+      saveDeckTitle(newdeck)
+  
+      this.props.navigation.navigate(
+        'Deck',
+        { deck: routedeck }
+      )
+    }
   }
 
 
@@ -23,7 +40,8 @@ export default class NewDeck extends React.Component {
     return (
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
 
-       <Text> What is the title of your new deck? </Text>
+       <View style={styles.container}>
+       <Text style={styles.font}> What is the title of your new deck? </Text>
        <TextInput
          placeholder={this.state.input}
          onChangeText={this.handleTextChange}
@@ -35,6 +53,7 @@ export default class NewDeck extends React.Component {
            <Text style={styles.btnText}>SUBMIT</Text>
          </TouchableOpacity>
        </View>
+       </View>
       </KeyboardAvoidingView>
     )
   }
@@ -43,8 +62,8 @@ export default class NewDeck extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginLeft: 50,
-    marginRight: 50,
+    marginLeft: 30,
+    marginRight: 30,
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -77,5 +96,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 40,
     width: 275,
+  },
+  font: {
+    fontSize: 35,
+    fontFamily: Platform.OS === 'ios' ?'San Francisco' :'Roboto',
+    alignSelf: 'center'
   }
 })

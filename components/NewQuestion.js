@@ -10,31 +10,22 @@ export default class NewQuestion extends React.Component {
   }
 
   submit = (value) => {
-    console.log(value)
-    
-    /*addCardToDeck(this.props.navigation.state.params.deck.title, this.state)
-    .then(this.props.navigation.navigate(
-      'Home',
-      { path: true }
-    ))*/
-    
-    addCardToDeck(this.props.navigation.state.params.deck.title, this.state)
-    .then(() => {
-      console.log(`Added`)
 
-      const navigateAction = NavigationActions.reset({
-        index: 0,
-        actions: [
-          NavigationActions.navigate({ routeName: 'Home' })
-        ]      
+    if (this.state.question != '' && this.state.answer != '') {
+      addCardToDeck(this.props.navigation.state.params.deck.title, this.state)
+      .then(() => {
+
+        const navigateAction = NavigationActions.reset({
+          index: 0,
+          actions: [
+            NavigationActions.navigate({ routeName: 'Home' })
+          ]      
+        })
+
+        this.props.navigation.dispatch(navigateAction)
       })
+    }    
 
-      this.props.navigation.dispatch(navigateAction)
-    })
-      
-    //)
-    
-    
   }
 
   handleTextChangeQ = (question) => {
@@ -54,7 +45,7 @@ export default class NewQuestion extends React.Component {
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
         
         <View>
-        <Text>This is the NewQuestion component</Text>
+        <Text style={styles.font}>Write the new question: </Text>
         <TextInput
           placeholder={this.state.question}
           onChangeText={this.handleTextChangeQ}
@@ -63,7 +54,7 @@ export default class NewQuestion extends React.Component {
         </View>
 
         <View>
-        <Text>This is the NewQuestion component</Text>
+        <Text style={styles.font}>Write the answer: </Text>
         <TextInput
           placeholder={this.state.answer}
           onChangeText={this.handleTextChangeA}
@@ -119,5 +110,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 40,
     width: 275
+  },
+  font: {
+    fontSize: 20,
+    alignSelf: 'center'
   }
 })
