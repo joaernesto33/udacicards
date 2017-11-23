@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, TouchableOpacity, StyleSheet, Modal, TouchableHighlight } from 'react-native'
+import { Text, View, TouchableOpacity, StyleSheet, Modal } from 'react-native'
 import FrontCard from './FrontCard'
 import BackCard from './BackCard'
 import Results from './Results'
@@ -137,7 +137,10 @@ export default class QuizContainer extends React.Component {
             <View style={{marginTop: 22}}>
               <View>
                 <View></View>
-                <Results score={this.state.score}/>
+                <Results 
+                  score={this.state.score} 
+                  totalquestions={this.props.navigation.state.params.deck.questions.length}
+                />
 
                 <View style={styles.btnContainer}>
                 <TouchableOpacity style={styles.btn} onPress={() => {

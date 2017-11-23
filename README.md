@@ -1,8 +1,5 @@
 ## Before You Begin
-This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app). 
-
-Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
-
+This project was bootstrapped with Create React Native App. 
 
 This project was tested for android environment. The UdaciCards project is a post app that allows you to study collections of cards. Also, the app will allow users to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks. <br>
 
@@ -83,6 +80,33 @@ UdaciCards/
     Results.js    
 
 ```
+
+## Contribution
+
+In general, we follow the "fork-and-pull" GIT workflow.
+
+1. Fork the repo on GitHub
+2. Clone the project to your own machine
+3. Commit changes to your own branch
+4. Push your work back up to your fork
+5. Submit a Pull request so that we can review your changes
+
+## Search Terms
+
+`user: joaernesto33`
+`repo: joaernesto33/udacicards`
+`location: Santa Ana, El Salvador`
+
+
+## Licensing
+
+Licensed under the terms of MIT License, Jokin 1.0
+
+## Usage Information
+
+After you clone this repo to your local machine, go to its root directory and run `npm install` to install its dependencies. Once the dependencies are installed, you can run `npm start` to start the application.
+
+Feel free to submit issues and enhancement requests.
 
 ## Sending Feedback
 Feel free to send any feedback to joaquin.aparicio@rulesware.com

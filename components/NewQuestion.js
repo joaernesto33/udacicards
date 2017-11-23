@@ -1,7 +1,12 @@
 import React from 'react'
-import { Text, View, TextInput, TouchableOpacity, StyleSheet, KeyboardAvoidingView } from 'react-native'
+import { Text, 
+  View, 
+  TextInput, 
+  TouchableOpacity, 
+  StyleSheet, 
+  KeyboardAvoidingView,
+  Keyboard } from 'react-native'
 import { addCardToDeck } from '../utils/helpers'
-import { NavigationActions } from 'react-navigation'
 
 export default class NewQuestion extends React.Component {
   state = {
@@ -12,17 +17,18 @@ export default class NewQuestion extends React.Component {
   submit = (value) => {
 
     if (this.state.question != '' && this.state.answer != '') {
+      Keyboard.dismiss()
       addCardToDeck(this.props.navigation.state.params.deck.title, this.state)
       .then(() => {
 
-        const navigateAction = NavigationActions.reset({
-          index: 0,
-          actions: [
-            NavigationActions.navigate({ routeName: 'Home' })
-          ]      
-        })
+        const { deck } = this.props.navigation.state.params 
+        deck.questions.push(this.state)
 
-        this.props.navigation.dispatch(navigateAction)
+        this.props.navigation.navigate(
+          'Deck',
+          { deck: deck }
+        )
+        
       })
     }    
 
